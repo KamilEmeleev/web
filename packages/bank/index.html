@@ -1,0 +1,19 @@
+<html xmlns="http://www.w3.org/1999/html">
+    <head></head>
+    <body>
+        <div id="root">
+            <h1>Hello, Bank!</h1>
+            <img src="http://evil.com:666/banner"/>
+            <div>
+                <button id="btn">pay</button>
+            </div>
+        </div>
+        <script>
+            document.getElementById('btn').onclick = () => {
+                fetch('http://evil.com:666/api', { method: 'GET'})
+                    .then(response => response.json())
+                    .then(data => alert(data.status));
+            }
+        </script>
+    </body>
+</html>
