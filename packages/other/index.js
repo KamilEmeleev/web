@@ -2,6 +2,7 @@ const express = require("express");
 const path = require('path');
 
 const app = express();
+app.set('view engine', 'ejs');
 
 const getCookies = (value) => {
   let res = {};
@@ -18,7 +19,7 @@ const getCookies = (value) => {
 
 /** CORS */
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "bank.com");
+  res.header("Access-Control-Allow-Origin", "other.com");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, Content-Type, Accept"
@@ -26,28 +27,23 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, '/index.html'));
-});
-
-app.post("/auth", (req, res) => {
-  res.header(
-      "Set-Cookie",
-      "token=12345; domain=bank.com"
-  );
-  res.status(200).send({ status: 'success' });
-});
-
-app.post("/pay", (req, res) => {
+app.get("/", function (req, res) {
   const cookies = getCookies(req.headers.cookie);
-  console.log(cookies);
-  if (cookies.token) {
-    res.status(200).send({ status: 'success' });
-  } else {
-    res.status(401).send({ status: 'canceled' });
-  }
+  res.render('index', { user: cookies.user });
 });
 
-app.listen(1000, () => {
-  console.log("Started bank");
+app.get("/public/*", async (req, res) => {
+  const file = req.path.split('/')[2];
+  const cookies = getCookies(req.headers.cookie);
+  if (!cookies.user) {
+    res.header(
+        "Set-Cookie",
+        "user=Tom; domain=other.com; path=/"
+    );
+  }
+  res.sendFile(path.join(__dirname, `/public/${file}`));
+});
+
+app.listen(1002, () => {
+  console.log("Started other");
 });

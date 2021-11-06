@@ -2,10 +2,11 @@ const express = require("express");
 const path = require('path');
 
 const app = express();
+app.set('view engine', 'ejs');
 
 /** CORS */
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Origin", "abc.com");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, Content-Type, Accept"
@@ -13,10 +14,10 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, '/index.html'));
+app.get("/", function (req, res) {
+  res.render('index');
 });
 
-app.listen(666, () => {
-  console.log("Started evil");
+app.listen(1003, () => {
+  console.log("Started site");
 });

