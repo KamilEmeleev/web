@@ -1,5 +1,7 @@
 ![img](./preview.png)
 
+# Cookie, CORS, CSP, CSRF и другие... Какого черта и как научиться с этим жить?
+
 ## Use
 ```
 yarn start
