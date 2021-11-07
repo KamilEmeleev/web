@@ -1,5 +1,10 @@
 ![img](./preview.png)
 
+## Use
+```
+yarn start
+```
+
 ## Hosts
 ### sudo nano /etc/hosts (macos)
 ```

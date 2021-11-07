@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "prestart": "yarn",
     "start": "wsrun --parallel start"
   },
   "workspaces": [
