@@ -5,13 +5,48 @@
       https://thecode.media/csp/
       <meta http-equiv="Content-Security-Policy" content="script-src 'self'">
       -->
+    <style>
+        h1 {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 400;
+        }
+    </style>
     <script src="http://other.com:1002/public/script.js"></script>
+    <script>
+        function run (value) {
+            alert(JSON.stringify(value));
+        }
+    </script>
+    <script src="http://other.com:1002/jsonp.js?callback=run"></script>
     <link rel="stylesheet" href="http://other.com:1002/public/style.css" />
 </head>
 <body>
     <div id="root">
         <h1>Hello, Site!</h1>
+        <div class="actions">
+            <button id="simple">get</button>
+            <form target="iframe" action="http://other.com:1002/simple" method="POST" style="display: inline-block">
+                <input type="submit" value="simple"/>
+            </form>
+            <iframe name="iframe" style="display: none"></iframe>
+        </div>
         <img src="http://other.com:1002/public/banner.jpeg" alt="" style="display: block; padding-top: 1em"/>
+        <img src="http://other.com:1002/public/banner.jpeg" crossorigin="" alt="" style="display: block; padding-top: 1em"/>
     </div>
+    <script>
+        const baseApi = 'http://other.com:1002';
+        const params = {
+            method: 'POST',
+            headers: {
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+        }
+        document.getElementById('simple').onclick = () => {
+            fetch(`${baseApi}/simple`, params)
+                .then(response => response.json())
+                .then(data => alert(data.status))
+                .catch(err => alert(err));
+        }
+    </script>
 </body>
 </html>

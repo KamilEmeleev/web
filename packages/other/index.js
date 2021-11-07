@@ -44,6 +44,22 @@ app.get("/public/*", async (req, res) => {
   res.sendFile(path.join(__dirname, `/public/${file}`));
 });
 
+app.post("/simple", async (req, res) => {
+  res.status(200).send({ result: 'simple' });
+});
+
+app.get("/jsonp.js", async (req, res) => {
+  const [,getParams] = req.originalUrl.split('?');
+  const arrParams = getParams.split('&');
+  const params = arrParams.reduce((acc, item) => {
+    const [key, value] = item.split('=');
+    acc[key] = value;
+    return acc;
+  }, {});
+  res.type('.js');
+  res.send(`${params.callback}({ say: 'Hello!' })`);
+});
+
 app.listen(1002, () => {
   console.log("Started other");
 });

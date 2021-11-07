@@ -1,3 +1,13 @@
 body {
     background-color: aliceblue;
 }
+
+@font-face {
+    font-family: 'Roboto';
+    src: url(http://other.com:1002/public/Roboto-Regular-webfont.eot);
+    src: url(http://other.com:1002/public/Roboto-Regular-webfont.eot?#iefix) format('embedded-opentype'),
+    url(http://other.com:1002/public/Roboto-Regular-webfont.woff) format('woff'),
+    url(http://other.com:1002/public/Roboto-Regular-webfont.ttf) format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}

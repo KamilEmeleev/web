@@ -18,7 +18,7 @@ const getCookies = (value) => {
 
 /** CORS */
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "bank.com");
+  res.header("Access-Control-Allow-Origin", "http://bank.com:1000");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, Content-Type, Accept"
@@ -33,7 +33,7 @@ app.get("/", (req, res) => {
 app.post("/auth", (req, res) => {
   res.header(
       "Set-Cookie",
-      "token=12345; domain=bank.com"
+      "token=12345; domain=bank.com;"
   );
   res.status(200).send({ status: 'success' });
 });
