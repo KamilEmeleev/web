@@ -1,5 +1,4 @@
-const express = require("express");
-const path = require('path');
+import express from 'express';
 
 const app = express();
 app.set('view engine', 'ejs');

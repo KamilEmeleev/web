@@ -1,5 +1,5 @@
-const express = require("express");
-const path = require('path');
+import express from 'express';
+import path from 'path';
 
 const app = express();
 
@@ -14,7 +14,7 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, '/index.html'));
+  res.sendFile(path.join(__dirname, '/views/index.html'));
 });
 
 app.listen(666, () => {

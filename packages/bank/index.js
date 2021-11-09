@@ -1,20 +1,8 @@
-const express = require("express");
-const path = require('path');
+import express from 'express';
+import path from 'path';
+import { getCookies } from '../../utils/cookies';
 
 const app = express();
-
-const getCookies = (value) => {
-  let res = {};
-  if (!value) {
-    return res;
-  }
-  const cookies = value.replace(/ /g, '').split(';');
-  for (let item of cookies) {
-    const [key, value] = item.split('=');
-    res[key] = value;
-  }
-  return res;
-}
 
 /** CORS */
 app.use((req, res, next) => {
@@ -27,7 +15,7 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, '/index.html'));
+  res.sendFile(path.join(__dirname, '/views/index.html'));
 });
 
 app.post("/auth", (req, res) => {

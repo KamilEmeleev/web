@@ -1,24 +1,11 @@
-const express = require("express");
-const path = require('path');
+import express from 'express';
+import path from 'path';
+import { getCookies } from '../../utils/cookies';
 
 const app = express();
 
-const getCookies = (value) => {
-  let res = {};
-  if (!value) {
-    return res;
-  }
-  const cookies = value.replace(/ /g, '').split(';');
-  for (let item of cookies) {
-    const [key, value] = item.split('=');
-    res[key] = value;
-  }
-  return res;
-}
-
 /** CORS */
 app.use(function (req, res, next) {
-  // https://stackoverflow.com/questions/46288437/set-cookies-for-cross-origin-requests
   res.header("Access-Control-Allow-Origin", "http://bank.com:1000");
   res.header(
     "Access-Control-Allow-Headers",
@@ -33,7 +20,7 @@ app.use(function (req, res, next) {
 });
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, '/index.html'));
+  res.sendFile(path.join(__dirname, '/views/index.html'));
 });
 
 app.post("/auth", (req, res) => {
