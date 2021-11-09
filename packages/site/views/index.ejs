@@ -1,11 +1,11 @@
-<html xmlns="http://www.w3.org/1999/html">
+<html xmlns="http://www.w3.org/1999/html" lang="ru">
 <head>
     <title>Site</title>
     <!-- Политика безопасности контента
       https://thecode.media/csp/
       <meta http-equiv="Content-Security-Policy" content="script-src 'self'">
       -->
-    <style>
+    <!-- <style>
         h1 {
             font-family: 'Roboto', sans-serif;
             font-weight: 400;
@@ -19,6 +19,7 @@
     </script>
     <script src="http://other.com:1002/jsonp.js?callback=run"></script>
     <link rel="stylesheet" href="http://other.com:1002/public/style.css" />
+    -->
 </head>
 <body>
     <div id="root">
@@ -31,7 +32,6 @@
             <iframe name="iframe" style="display: none"></iframe>
         </div>
         <img src="http://other.com:1002/public/banner.jpeg" alt="" style="display: block; padding-top: 1em"/>
-        <img src="http://other.com:1002/public/banner.jpeg" crossorigin="" alt="" style="display: block; padding-top: 1em"/>
     </div>
     <script>
         const baseApi = 'http://other.com:1002';
@@ -45,7 +45,7 @@
             fetch(`${baseApi}/simple`, params)
                 .then(response => response.json())
                 .then(data => alert(data.status))
-                .catch(err => alert(err));
+                .catch(err => alert(err.message));
         }
     </script>
 </body>
