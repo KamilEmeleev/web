@@ -1,6 +1,13 @@
 <html xmlns="http://www.w3.org/1999/html" lang="ru">
     <head>
         <title>Bank</title>
+<!--        <meta http-equiv="Content-Security-Policy"-->
+<!--              content="default-src 'unsafe-inline'-->
+<!--              https://www.google-analytics.com/-->
+<!--              https://www.googletagmanager.com/-->
+<!--              https://api-maps.yandex.ru/-->
+<!--              https://mc.yandex.ru/"-->
+<!--        >-->
     </head>
     <body>
         <div id="root">
@@ -13,10 +20,9 @@
         <script>
             const baseApi = 'http://bank.com:1000';
             const params = {
-                // credentials: 'include',
                 method: 'POST',
                 headers: {
-                    'Content-Type':'application/json'
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 },
             }
             // auth
@@ -31,6 +37,15 @@
                     .then(response => response.json())
                     .then(data => alert(data.status));
             }
+        </script>
+        <script>
+            const el = document.createElement('SCRIPT');
+            el.src = 'https://www.google-analytics.com/analytics.js';
+            document.body.appendChild(el);
+
+            const el2 = document.createElement('SCRIPT');
+            el2.src = 'https://mc.yandex.ru/metrika/watch.js';
+            document.body.appendChild(el2);
         </script>
     </body>
 </html>
